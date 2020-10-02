@@ -3,12 +3,7 @@
 using namespace std;
 
 
-bool vitalsAreOk(float bpm, float spo2, float respRate) {
-  Check_BPM(bpm);
-  Check_SPO2(spo2);
-  Check_Resperate(respRate);
-  
-}
+
 		 void Check_BPM (float bpm)
 		{
 			if (bpm > 150)
@@ -51,7 +46,12 @@ bool vitalsAreOk(float bpm, float spo2, float respRate) {
 				cout<<"respiration rate is normal";
 			}
 		}
-
+bool vitalsAreOk(float bpm, float spo2, float respRate) {
+  Check_BPM(bpm);
+  Check_SPO2(spo2);
+  Check_Resperate(respRate);
+  
+}
 
 int main() {
 
