@@ -2,62 +2,53 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+float minBpm,maxBpm;
+float minSpo2;
+float minRespirate,MaxRespirate;
+ void VitalsRangeChecker(float _minBpm,float _maxBpm, float _minSpo2, float _minRespirate, float _maxRespirate)
+ {
+   minBpm=_minBpm;
+   maxBpm=_maxBpm;
+   minSpo2=_minSpo2;
+   minRespirate=_minRespirate;
+   MaxRespirate=_maxRespirate;
+ }
 
-
-		 void Check_BPM (float bpm)
+		 bool Check_BPM (float bpm)
 		{
-			if (bpm > 150)
+			if (bpm > maxBpm || bpm < minBpm)
 			{
-				cout<<"bpm is high" ;
+				return false;
 			}
-			else if (bpm < 70)
-			{
-				cout<<"bpm is low";
-			}
-			else
-			{
-				cout<<"bpm is normal";
-			}
+		  return true;
 		}
-	 void Check_SPO2 (float spo2)
+	bool Check_SPO2 (float spo2)
 		{
-			if(spo2 > 90)
+			if(spo2 > minSpo2)
 			{
-				cout<<"spo2 is normal";
+				return true;
 			}
-			else
-			{
-			cout<<"spo2 level is low";
-			}
+			return false;
 		}
 	
-	 void Check_Resperate (float respirate)
+	 bool Check_Resperate (float respirate)
 		{
-			if(respirate > 95)
+			if(respirate < minRespirate || respirate > MaxRespirate  )
 			{
-				cout<<"respiration rate is high";
+				return false;
 			}
-			else if (respirate < 30)
-			{
-				cout<<"respiration rate is low";
-			}
-			else
-			{
-				cout<<"respiration rate is normal";
-			}
+			return true;
 		}
 bool vitalsAreOk(float bpm, float spo2, float respRate) {
-  Check_BPM(bpm);
-  Check_SPO2(spo2);
-  Check_Resperate(respRate);
-  
+ bool checkBpm= Check_BPM(bpm);
+ bool checkSpo2= Check_SPO2(spo2);
+bool checkRespirate=Check_Resperate(respRate);
+return (checkBpm && checkSpo2 && checkRespirate);  
 }
 
 int main() {
-
-  //assert(vitalsAreOk(80, 95, 60) == true);
-  //assert(vitalsAreOk(60, 90, 40) == false);
-  vitalsAreOk(80,95,60);
-  vitalsAreOk(60,90,40);
+VitalsRangeChecker(70,150,90,30,95);
+  assert(vitalsAreOk(80, 95, 60) == true);
+  assert(vitalsAreOk(60, 90, 40) == false);
 
 }
